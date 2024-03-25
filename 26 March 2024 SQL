@@ -1,0 +1,68 @@
+# select all * means select all 
+SELECT *
+FROM oliveoil.sales;
+# select specific columms, note: after order total, there is no comma or full stop. 
+SELECT order_num,emp_name,prod_category,order_total
+FROM oliveoil.sales;
+# limit the output to 10 rows
+SELECT order_num,emp_name,prod_category,order_total
+FROM oliveoil.sales
+LIMIT 10;
+#select one column
+SELECT prod_category
+FROM oliveoil.sales;
+#how to use ORDER BY default by ASC 
+SELECT order_num,emp_name,prod_category,order_total
+FROM oliveoil.sales
+ORDER BY order_total DESC;
+# select unique values from one column
+SELECT DISTINCT prod_category
+FROM oliveoil.sales;
+#how to sort by product category and order total 
+SELECT order_num,emp_name,prod_category,order_total
+FROM oliveoil.sales
+ORDER BY prod_category,order_total DESC;
+# how to find the top 5 overall orders
+SELECT order_num,emp_name,prod_category,order_total
+FROM oliveoil.sales
+ORDER BY order_total DESC
+LIMIT 5;
+# how to use WHERE clause , should include the text in single quotes and the same written as in the database. 
+SELECT order_num,emp_name,prod_category,order_total
+FROM oliveoil.sales
+WHERE prod_category='Bath Products'
+ORDER BY order_total DESC
+LIMIT 5;
+# How to use IN to filter data when use WHERE 
+SELECT order_num,emp_name,prod_category,order_total
+FROM oliveoil.sales
+WHERE prod_category IN ('Bath Products','Gift Basket')
+ORDER BY order_total DESC
+LIMIT 5;
+#how to filter data wuth '!=' sign (means not equal to) 
+SELECT order_num,emp_name,prod_category,order_total
+FROM oliveoil.sales
+WHERE prod_category !='Olive oil'
+ORDER BY order_total DESC
+LIMIT 5;
+#Filter your data with multiple conditions using AND operator
+SELECT order_num,emp_name,prod_category,order_total, quantity
+FROM oliveoil.sales
+WHERE prod_category ='Bath Products'
+AND emp_name='Clement Carry'
+AND quantity>3
+ORDER BY order_total DESC;
+#WHERE:filter data with BETWEEN operator 
+SELECT order_num,emp_name,prod_category,order_total, quantity
+FROM oliveoil.sales
+WHERE prod_category ='Bath Products'
+AND emp_name='Clement Carry'
+AND quantity BETWEEN 2 AND 4 
+ORDER BY order_total DESC;
+#WHERE: to use OR operator 
+SELECT order_num,emp_name,prod_category,order_total, quantity
+FROM oliveoil.sales
+WHERE (prod_category ='Bath Products'
+OR emp_name='Clement Carry')AND quantity>5
+ORDER BY order_total DESC;
+
